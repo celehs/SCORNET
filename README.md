@@ -1,38 +1,38 @@
-CCSK
+SCORNET
 ================
 
 ## Overview
 
-The Censor-Time Current Status Kernel Survival Estimator (CCSK) is a
-consistent, semi-supervised, non-parametric survival curve estimator
-optimized for efficient use of Electronic Health Record (EHR) data with
-a limited number of current status labels. Derived from van der Laan and
-Robins’ Inverse Probability of Censoring Weighted (IPCW) estimator, it
-achieves locally efficient survival curve estimation using current
-status labels – binary indicators of phenotype status at censoring time
-– rather than more expensive event time labels. CCSK boosts efficiency
-over IPCW in the typical EHR setting by (1) utilizing unlabeled patients
-in a semi-supervised fashion, and (2) leveraging information-dense
-engineered EHR features to maximize imputation precision in the
-unlabeled set.
+The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
+is a consistent, semi-supervised, non-parametric survival curve
+estimator optimized for efficient use of Electronic Health Record (EHR)
+data with a limited number of current status labels. Derived from van
+der Laan and Robins’ Inverse Probability of Censoring Weighted (IPCW)
+estimator, it achieves locally efficient survival curve estimation using
+current status labels – binary indicators of phenotype status at
+censoring time – rather than more expensive event time labels. CCSK
+boosts efficiency over IPCW in the typical EHR setting by (1) utilizing
+unlabeled patients in a semi-supervised fashion, and (2) leveraging
+information-dense engineered EHR features to maximize imputation
+precision in the unlabeled set.
 
 See Ahuja et al. (2020) for details.
 
 ## References
 
-  - Ahuja Y, Liang L, Huang S, Cai T (2020). Censor-Time Current Status
-    Kernel Estimator (CCSK): A Locally Efficient Survival Curve
-    Estimator Using Electronic Health Record Data. BioArxiv.
+  - Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration
+    of Risk with Noisy Event Times (SCORNET) Using Electronic Health
+    Record Data. BioArxiv.
 
   - Mark J. van der Laan & James M. Robins (1998) Locally Efficient
     Estimation with Current Status Data and Time-Dependent Covariates,
     Journal of the American Statistical Association, 93:442, 693-701,
     DOI: 10.1080/01621459.1998.10473721
 
-## CCSK Example
+## SCORNET Example
 
 ``` r
-source("R/CCSK.R")
+source("R/SCORNET.R")
 ```
 
     ## Loading required package: foreach
@@ -77,7 +77,8 @@ t0.all <- seq(
 suppressWarnings(ccsk_est <- ccsk(
   dat$Delta[1:n],
   dat$C[1:n],
-  t0.all,dat$C[-c(1:n)],
+  t0.all,
+  dat$C[-c(1:n)],
   dat$filter[1:n],
   dat$filter[-c(1:n)],
   dat$Z0[1:n],
@@ -105,4 +106,4 @@ proc.time()
 ```
 
     ##    user  system elapsed 
-    ##  70.746   0.157  70.946
+    ##  71.165   0.155  71.402
