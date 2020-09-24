@@ -1,3 +1,6 @@
+#' @importFrom stats binomial dnorm glm quantile sd
+NULL
+
 # CCSK.R: Contains CCSK survival estimator function.
 # Author: Yuri Ahuja
 # Last Updated: 9/15/2020
@@ -7,14 +10,6 @@
 # by (1) utilizing unlabeled patients in a semi-supervised fashion, and (2) leveraging
 # information-dense engineered EHR features to maximize unlabeled set imputation precision
 # See Ahuja et al. (2020) Submitted to ... for details
-
-
-library(survival)
-library(parallel)
-library(doParallel)
-library(foreach)
-library(Matrix)
-library(pracma)
 
 expit <- function(x){
   ifelse(x>=100,1,exp(x)/(1+exp(x)))
@@ -29,20 +24,22 @@ Knorm <- function(t0,t,b=1){
   dnorm(abs(t-t0),sd=b)
 }
 
+`%dopar%` <- foreach::`%dopar%`
+
 # Kernel-Smoothed Cox/Breslow estimator of C|Z0
 g <- function(C,Z=NULL,K=Knorm,b=1){
   N <- length(C)
   if (is.null(Z)){Z <- matrix(1,nrow=length(C),ncol=1)}
-  beta_C.Z <- coxph(Surv(C)~Z)$coefficients; beta_C.Z[is.na(beta_C.Z)] <- 0
+  beta_C.Z <- survival::coxph(survival::Surv(C)~Z)$coefficients; beta_C.Z[is.na(beta_C.Z)] <- 0
   denom <- sapply(1:N,function(j){sum(exp(as.matrix(Z[C >= C[j],]) %*% beta_C.Z))})
   hC0 <- 1 / denom
-  hC0k <- foreach(c1=C, .combine=c, .export='K') %dopar% {
+  hC0k <- foreach::foreach(c1=C, .combine=c, .export='K') %dopar% {
     hC0 %*% sapply(C,function(c2){K(c1,c2,b)})
   }
-  HC0 <- foreach(c=C, .combine=c, .export='trapz') %dopar% {
+  HC0 <- foreach::foreach(c=C, .combine=c, .export='trapz') %dopar% {
     lt <- which(C <= c)
     lt <- lt[order(C[lt])]
-    trapz(C[lt],hC0k[lt])
+    pracma::trapz(C[lt],hC0k[lt])
   }
   SC0 <- exp(-HC0)
   h <- exp(Z %*% beta_C.Z)
@@ -50,20 +47,24 @@ g <- function(C,Z=NULL,K=Knorm,b=1){
   as.vector(h * hC0k * SC0^h)
 }
 
-## CCSK Estimator
-# Inputs:
-# Delta: Labeled set current status labels (I(T<C)); C: Labeled set censoring times;
-# t0.all: Times at which to estimate survival; C.UL: Unlabeled set censoring times;
-# filter: Labeled set binary filter indicators; filter.UL: Unlabeled set filter indicators;
-# Z0: Labeled set baseline feature matrix; Z0.UL: Unlabeled set baseline feature matrix;
-# Zehr: Labeled set EHR-derived feature matrix; Zehr.UL: Unlabeled set EHR-derived feature matrix;
-# K: Kernel function (defaults to standard normal) with bandwidth b (default set heuristically)
-# ghat: N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)
-# Outputs:
-# S_hat: Survival function estimates at times t0.all
-# StdErrs: Asymptotically consistent standard error estimates corresponding to S_hat
-ccsk <- function(Delta,C,t0.all,C.UL=NULL,filter=NULL,filter.UL=NULL,Z0=NULL,Z0.UL=NULL,
-                     Zehr=NULL,Zehr.UL=NULL,K=Knorm,b=NULL,ghat=NULL){
+#' SCORNET Estimator
+#' @param Delta Labeled set current status labels (I(T<C))
+#' @param C Labeled set censoring times
+#' @param t0.all Times at which to estimate survival 
+#' @param C.UL Unlabeled set censoring times
+#' @param filter Labeled set binary filter indicators
+#' @param filter.UL Unlabeled set filter indicators
+#' @param Z0 Labeled set baseline feature matrix
+#' @param Z0.UL Unlabeled set baseline feature matrix
+#' @param Zehr Labeled set EHR-derived feature matrix
+#' @param Zehr.UL Unlabeled set EHR-derived feature matrix
+#' @param K Kernel function (defaults to standard normal) 
+#' @param b bandwidth (default set heuristically)
+#' @param ghat N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)
+#' @return S_hat: Survival function estimates at times t0.all; StdErrs: Asymptotically consistent standard error estimates corresponding to S_hat
+#' @export
+scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NULL, Z0 = NULL, Z0.UL = NULL,
+                     Zehr = NULL, Zehr.UL = NULL, K = Knorm, b = NULL, ghat = NULL) {
   Ctot <- c(C,C.UL)
   N <- length(C)
   Ntot <- length(Ctot)

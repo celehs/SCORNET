@@ -10,7 +10,7 @@ data with a limited number of current status labels. Derived from van
 der Laan and Robins’ Inverse Probability of Censoring Weighted (IPCW)
 estimator, it achieves locally efficient survival curve estimation using
 current status labels – binary indicators of phenotype status at
-censoring time – rather than more expensive event time labels. CCSK
+censoring time – rather than more expensive event time labels. SCORNET
 boosts efficiency over IPCW in the typical EHR setting by (1) utilizing
 unlabeled patients in a semi-supervised fashion, and (2) leveraging
 information-dense engineered EHR features to maximize imputation
@@ -32,19 +32,8 @@ See Ahuja et al. (2020) for details.
 ## SCORNET Example
 
 ``` r
-source("R/SCORNET.R")
+library(SCORNET)
 ```
-
-    ## Loading required package: foreach
-
-    ## Loading required package: iterators
-
-    ## 
-    ## Attaching package: 'pracma'
-
-    ## The following objects are masked from 'package:Matrix':
-    ## 
-    ##     expm, lu, tril, triu
 
 ``` r
 sim <- function(N) {
@@ -74,7 +63,7 @@ t0.all <- seq(
 ```
 
 ``` r
-suppressWarnings(ccsk_est <- ccsk(
+suppressWarnings(scornet_est <- scornet(
   dat$Delta[1:n],
   dat$C[1:n],
   t0.all,
@@ -88,14 +77,14 @@ suppressWarnings(ccsk_est <- ccsk(
 ```
 
 ``` r
-plot(t0.all, ccsk_est$S_hat, 
+plot(t0.all, scornet_est$S_hat, 
      type = 'l', xlab = 'Time', ylab = 'Survival')
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
-plot(t0.all, ccsk_est$StdErrs, 
+plot(t0.all, scornet_est$StdErrs, 
      type = 'l', xlab = 'Time', ylab =' Std. Err.')
 ```
 
@@ -106,4 +95,4 @@ proc.time()
 ```
 
     ##    user  system elapsed 
-    ##  71.165   0.155  71.402
+    ##  68.005   0.167  68.217
