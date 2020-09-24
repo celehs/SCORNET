@@ -4,7 +4,7 @@ SCORNET
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/celehs/CCSK/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/CCSK/actions)
+status](https://github.com/celehs/SCORNET/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/SCORNET/actions)
 <!-- badges: end -->
 
 ## Overview
