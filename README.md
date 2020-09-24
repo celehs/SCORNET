@@ -1,6 +1,12 @@
 SCORNET
 ================
 
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/celehs/CCSK/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/CCSK/actions)
+<!-- badges: end -->
+
 ## Overview
 
 The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
@@ -95,4 +101,4 @@ proc.time()
 ```
 
     ##    user  system elapsed 
-    ##  68.005   0.167  68.217
+    ##  67.622   0.191  67.823
