@@ -66,7 +66,7 @@ estimate.h <- function(C,Z=NULL,b=NULL){
 #' @return S_hat: Survival function estimates at times t0.all; StdErrs: Asymptotically consistent standard error estimates corresponding to S_hat
 #' @export
 scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NULL, Z0 = NULL, Z0.UL = NULL,
-                     Zehr = NULL, Zehr.UL = NULL, K = Knorm, b = NULL, h_hat = NULL) {
+                    Zehr = NULL, Zehr.UL = NULL, K = Knorm, b = NULL, h_hat = NULL) {
   Ctot <- c(C,C.UL)
   N <- length(C)
   Ntot <- length(Ctot)

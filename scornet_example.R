@@ -24,7 +24,7 @@ t22-t12
 
 t12 <- proc.time()
 scornet_est <- scornet(dat$Delta[1:n],dat$C[1:n],t0.all,dat$C[-c(1:n)],dat$filter[1:n],dat$filter[-c(1:n)],
-					   dat$Z0[1:n],dat$Z0[-c(1:n)],dat$Zehr[1:n],dat$Zehr[-c(1:n)])
+                       dat$Z0[1:n],dat$Z0[-c(1:n)],dat$Zehr[1:n],dat$Zehr[-c(1:n)])
 t22 <- proc.time()
 t22-t12
 

@@ -20,14 +20,13 @@ arma::vec kernelSmoothen(arma::vec hC0, arma::vec C, double b){
     int i,j;
     arma::vec hC0k(N);
     hC0k.zeros();
-
+    
     for (i=0; i<N; i++){
         for (j=0; j<N; j++){
             hC0k[i] += hC0[j] * dnorm(C[i],C[j],b);
         }
     }
-
+    
     return hC0k;
 }
-
 
