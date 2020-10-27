@@ -8,7 +8,7 @@ using namespace RcppArmadillo;
 // [[Rcpp::depends("RcppArmadillo")]]
 
 
-double dnorm(double x, double m, double s){
+double d_norm(double x, double m, double s){
     double a = (x-m)/s;
     return 1.0/sqrt(2.0*M_PI) * std::exp(-0.5 * a * a);
 }
@@ -23,7 +23,7 @@ arma::vec kernelSmoothen(arma::vec hC0, arma::vec C, double b){
     
     for (i=0; i<N; i++){
         for (j=0; j<N; j++){
-            hC0k[i] += hC0[j] * dnorm(C[i],C[j],b);
+            hC0k[i] += hC0[j] * d_norm(C[i],C[j],b);
         }
     }
     

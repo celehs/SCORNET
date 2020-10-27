@@ -1,3 +1,6 @@
+`%dopar%` <- foreach::`%dopar%`
+utils::globalVariables("i")
+
 #' @importFrom stats binomial dnorm glm quantile sd
 NULL
 
@@ -12,7 +15,7 @@ NULL
 # See Ahuja et al. (2020) BioArxiv for details
 
 expit <- function(x){
-  ifelse(x>=100,1,exp(x)/(1+exp(x)))
+  1/(1+exp(-x))
 }
 
 logit <- function(x){
@@ -23,8 +26,6 @@ logit <- function(x){
 Knorm <- function(t0,t,b=1){
   dnorm(abs(t-t0),sd=b)
 }
-
-`%dopar%` <- foreach::`%dopar%`
 
 # Kernel-Smoothed Cox/Breslow estimator of C|Z0
 estimate.h <- function(C,Z=NULL,b=NULL){
