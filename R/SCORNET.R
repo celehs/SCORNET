@@ -4,11 +4,11 @@ utils::globalVariables("i")
 #' @importFrom stats binomial dnorm glm quantile sd
 NULL
 
-# CCSK.R: Contains CCSK survival estimator function.
+# SCORNET.R: Contains SCORNET survival estimator function.
 # Author: Yuri Ahuja
 # Last Updated: 9/15/2020
 #
-# The Censor-Time Current Status Kernel Estimator (CCSK) is a consistent, non-parametric
+# Semi-Supervised Calibration of Risk with Noisy Event Times (SCORNET) is a consistent, non-parametric
 # survival curve estimator that boosts efficiency over existing non-parametric estimators
 # by (1) utilizing unlabeled patients in a semi-supervised fashion, and (2) leveraging
 # information-dense engineered EHR features to maximize unlabeled set imputation precision
@@ -101,7 +101,7 @@ scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NU
   
   Kmat <- outer(Ctot,t0.all,function(x,y){K(x,y,b)})
   beta_T.Z <- sapply(1:length(t0.all),function(i){
-    glm(Delta~cbind(Z0,Zehr), family=binomial, weights=filter*Kmat[1:N,i])$coef
+    glm(Delta~cbind(Z0,Zehr), family=quasibinomial, weights=filter*Kmat[1:N,i])$coef
   })
   beta_T.Z[is.na(beta_T.Z)] <- 0
   
