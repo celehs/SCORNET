@@ -13,6 +13,7 @@ The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a co
 
 See Ahuja et al. (2020) for details.
 
+Click [HERE](articles/example.html) to view a simulated example. 
 
 ## References
 
