@@ -10,6 +10,9 @@
 #' @keywords package
 #' @useDynLib SCORNET
 #' @import Rcpp
+#' @import foreach
+#' @import parallel
+#' @import doParallel
 #' @importFrom stats quasibinomial
 #' @importFrom stats dnorm
 #' @importFrom stats glm

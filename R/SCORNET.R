@@ -96,8 +96,8 @@ scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NU
   if (nCores > 1){
     logfile <- "SCORNET.log"
     writeLines(c(""), file(logfile,'w'))
-    clust <- makeCluster(nCores, outfile=logfile)
-    registerDoParallel(clust)
+    clust <- parallel::makeCluster(nCores, outfile=logfile)
+    doParallel::registerDoParallel(clust)
   }
   
   if (is.null(b)){

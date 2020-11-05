@@ -2,6 +2,9 @@
 
 export(scornet)
 import(Rcpp)
+import(doParallel)
+import(foreach)
+import(parallel)
 importFrom(stats,binomial)
 importFrom(stats,dnorm)
 importFrom(stats,glm)
