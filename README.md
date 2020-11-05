@@ -7,8 +7,7 @@ SCORNET
 status](https://github.com/celehs/SCORNET/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/SCORNET/actions)
 <!-- badges: end -->
 
-Overview
---------
+## Overview
 
 The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
 is a consistent, semi-supervised, non-parametric survival curve
@@ -23,16 +22,17 @@ unlabeled patients in a semi-supervised fashion, and (2) leveraging
 information-dense engineered EHR features to maximize imputation
 precision in the unlabeled set.
 
-See Ahuja et al. (2020) for details.
+See Ahuja et al. (2020) for details.
 
-References
-----------
+Click [HERE](articles/example.html) to view a simulated example.
 
--   Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration
+## References
+
+  - Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration
     of Risk with Noisy Event Times (SCORNET) Using Electronic Health
     Record Data. BioArxiv.
 
--   Mark J. van der Laan & James M. Robins (1998) Locally Efficient
+  - Mark J. van der Laan & James M. Robins (1998) Locally Efficient
     Estimation with Current Status Data and Time-Dependent Covariates,
     Journal of the American Statistical Association, 93:442, 693-701,
     DOI: 10.1080/01621459.1998.10473721
