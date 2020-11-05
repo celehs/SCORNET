@@ -1,3 +1,4 @@
+`%do%` <- foreach::`%do%`
 `%dopar%` <- foreach::`%dopar%`
 utils::globalVariables("i")
 
@@ -28,7 +29,7 @@ Knorm <- function(t0,t,b=1){
 }
 
 # Kernel-Smoothed Cox/Breslow estimator of C|Z0
-estimate.h <- function(C,Z=NULL,b=NULL){
+estimate.h <- function(C,Z=NULL,b=NULL,nCores=1){
   N <- length(C)
   if (is.null(Z)){Z <- matrix(1,nrow=length(C),ncol=1)}
   if (is.null(b)){b <- N^(-1/4) * min(sd(C), (quantile(C,0.75)-quantile(C,0.25))/1.34)}
@@ -41,8 +42,15 @@ estimate.h <- function(C,Z=NULL,b=NULL){
   hC0 <- 1 / denom
   hC0k <- c(kernelSmoothen(hC0,C,b))
   
-  HC0 <- foreach::foreach(i=1:N, .combine=c, .export='trapz') %dopar% {
-    pracma::trapz(C[1:i],hC0k[1:i])
+  if (nCores == 1){
+    HC0 <- foreach::foreach(i=1:N, .combine=c) %do% {
+      pracma::trapz(C[1:i],hC0k[1:i])
+    }
+  }
+  else{
+    HC0 <- foreach::foreach(i=1:N, .combine=c, .export='trapz') %dopar% {
+      pracma::trapz(C[1:i],hC0k[1:i])
+    }
   }
   SC0 <- exp(-HC0)
   h <- exp(Z %*% beta_C.Z)
@@ -64,10 +72,11 @@ estimate.h <- function(C,Z=NULL,b=NULL){
 #' @param K Kernel function (defaults to standard normal) 
 #' @param b bandwidth (default set heuristically)
 #' @param h_hat N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)
+#' @param nCores Number of cores to use for parallelization (defaults to 1)
 #' @return S_hat: Survival function estimates at times t0.all; StdErrs: Asymptotically consistent standard error estimates corresponding to S_hat
 #' @export
 scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NULL, Z0 = NULL, Z0.UL = NULL,
-                    Zehr = NULL, Zehr.UL = NULL, K = Knorm, b = NULL, h_hat = NULL) {
+                    Zehr = NULL, Zehr.UL = NULL, K = Knorm, b = NULL, h_hat = NULL, nCores = 1) {
   Ctot <- c(C,C.UL)
   N <- length(C)
   Ntot <- length(Ctot)
@@ -84,6 +93,13 @@ scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NU
   Zehrfp <- Zehrtot[filtertot,]
   Nfp <- sum(filtertot)
   
+  if (nCores > 1){
+    logfile <- "SCORNET.log"
+    writeLines(c(""), file(logfile,'w'))
+    clust <- makeCluster(nCores, outfile=logfile)
+    registerDoParallel(clust)
+  }
+  
   if (is.null(b)){
     b <- N^(-1/3) * min(sd(Cfp), (quantile(Cfp,0.75)-quantile(Cfp,0.25))/1.34)
   }
@@ -93,7 +109,7 @@ scornet <- function(Delta, C, t0.all, C.UL = NULL, filter = NULL, filter.UL = NU
   # STEP 1A: Estimate density h(C|Z0)
   
   if (is.null(h_hat)){
-    h_hat <- estimate.h(Ctot,Z0tot,nu)
+    h_hat <- estimate.h(Ctot,Z0tot,nu,nCores)
   }
   
   
