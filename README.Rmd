@@ -15,11 +15,11 @@ The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a co
 
 See Ahuja et al. (2020) for details.
 
-Click [HERE](docs/articles/example.html) to view a simulated example. 
+Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated example. 
 
 ## References
 
-- Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) Using Electronic Health Record Data. BioArxiv.
+- Ahuja Y, Liang L, Huang S, Liao K, Cai T (2020). Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) Using Electronic Health Record Data. BioArxiv.
 
 - Mark J. van der Laan & James M. Robins (1998) Locally Efficient Estimation with Current Status Data and Time-Dependent Covariates, Journal of the American Statistical Association, 93:442, 693-701, DOI: 10.1080/01621459.1998.10473721
 

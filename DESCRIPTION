@@ -6,7 +6,7 @@ Authors@R:
            family = "Ahuja",
            role = c("aut", "cre"),
            email = "Yuri_Ahuja@hms.harvard.edu")
-Description: A consistent, semi-supervised, non-parametric survival curve estimator optimized for efficient use of Electronic Health Record (EHR) data with a limited number of current status labels. 
+Description: A consistent, semi-supervised, non-parametric survival curve estimator optimized for efficient use of Electronic Health Record (EHR) data with a limited number of current status labels. See van der Laan and Robins (1997) <doi:10.2307/2670119>.
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
