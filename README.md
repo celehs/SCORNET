@@ -24,7 +24,7 @@ precision in the unlabeled set.
 
 See Ahuja et al. (2020) for details.
 
-Click [HERE](articles/example.html) to view a simulated example.
+Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated example.
 
 ## References
 
