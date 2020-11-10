@@ -7,6 +7,8 @@ SCORNET
 status](https://github.com/celehs/SCORNET/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/SCORNET/actions)
 <!-- badges: end -->
 
+![Schematic of the SCORNET algorithm.](README_files/scornet_flowchart.png)
+
 ## Overview
 
 The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
