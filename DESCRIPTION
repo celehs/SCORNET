@@ -1,6 +1,6 @@
 Package: SCORNET
 Title: Semi-Supervised Calibration of Risk with Noisy Event Times
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Yuri",
            family = "Ahuja",

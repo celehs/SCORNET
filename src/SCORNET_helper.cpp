@@ -10,7 +10,7 @@ using namespace RcppArmadillo;
 
 double d_norm(double x, double m, double s){
     double a = (x-m)/s;
-    return 1.0/sqrt(2.0*M_PI) * std::exp(-0.5 * a * a);
+    return std::exp(-0.5 * a * a) / (s * sqrt(2.0 * M_PI));
 }
 
 

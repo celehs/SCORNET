@@ -7,7 +7,7 @@ sim <- function(N){
   dat$T <- 15*(rexp(N)*exp(-0.75*dat$Z))^(2/5)
   dat$X <- pmin(dat$T,dat$C)
   dat$Delta <- dat$T <= dat$C
-  dat$filter <- as.logical(rbinom(N,1,0.98)*dat$Delta + rbinom(N,1,0.12)*(1-dat$Delta))
+  dat$filter <- as.logical(dat$Delta + rbinom(N,1,0.12)*(1-dat$Delta))
   dat$Zehr <- pmin(dat$T+rnorm(N,0,2),dat$C)
   return(dat)
 }
