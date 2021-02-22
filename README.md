@@ -7,6 +7,8 @@ SCORNET
 status](https://github.com/celehs/SCORNET/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/SCORNET/actions)
 <!-- badges: end -->
 
+![Schematic of the SCORNET algorithm.](README_files/scornet_flowchart.png)
+
 ## Overview
 
 The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
@@ -24,6 +26,8 @@ precision in the unlabeled set.
 
 See Ahuja et al. (2020) for details.
 
+Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated example.
+
 ## References
 
   - Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration
@@ -34,71 +38,3 @@ See Ahuja et al. (2020) for details.
     Estimation with Current Status Data and Time-Dependent Covariates,
     Journal of the American Statistical Association, 93:442, 693-701,
     DOI: 10.1080/01621459.1998.10473721
-
-## SCORNET Example
-
-``` r
-library(SCORNET)
-```
-
-``` r
-sim <- function(N) {
-  dat <- data.frame('ID' = 1:N)
-  dat$Z0 <- runif(N, -1, 1)
-  dat$C <- 10 * (rexp(N) * exp(-0.75 * dat$Z))^(2/3)
-  dat$T <- 15 * (rexp(N) * exp(-0.75 * dat$Z))^(2/5)
-  dat$X <- pmin(dat$T, dat$C)
-  dat$Delta <- dat$T <= dat$C
-  dat$filter <- as.logical(
-    rbinom(N, 1, 0.98) * dat$Delta + 
-      rbinom(N, 1, 0.12) * (1 - dat$Delta))
-  dat$Zehr <- pmin(dat$T + rnorm(N, 0, 2), dat$C)
-  return(dat)
-}
-```
-
-``` r
-set.seed(1)
-N <- 5000
-n <- 200
-dat <- sim(N)
-t0.all <- seq(
-  quantile(dat$C, .1),
-  quantile(dat$C, .9),
-  length.out = 100)
-```
-
-``` r
-suppressWarnings(scornet_est <- scornet(
-  dat$Delta[1:n],
-  dat$C[1:n],
-  t0.all,
-  dat$C[-c(1:n)],
-  dat$filter[1:n],
-  dat$filter[-c(1:n)],
-  dat$Z0[1:n],
-  dat$Z0[-c(1:n)],
-  dat$Zehr[1:n],
-  dat$Zehr[-c(1:n)]))
-```
-
-``` r
-plot(t0.all, scornet_est$S_hat, 
-     type = 'l', xlab = 'Time', ylab = 'Survival')
-```
-
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
-``` r
-plot(t0.all, scornet_est$StdErrs, 
-     type = 'l', xlab = 'Time', ylab =' Std. Err.')
-```
-
-![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
-
-``` r
-proc.time()
-```
-
-    ##    user  system elapsed 
-    ##  67.622   0.191  67.823

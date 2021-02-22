@@ -1,17 +1,14 @@
 Package: SCORNET
-Title: Semi-supervised Calibration of Risk with Noisy Event Times
-Version: 0.0.1.9000
+Title: Semi-Supervised Calibration of Risk with Noisy Event Times
+Version: 0.1.1
 Authors@R: 
     person(given = "Yuri",
            family = "Ahuja",
            role = c("aut", "cre"),
            email = "Yuri_Ahuja@hms.harvard.edu")
-Description: The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a consistent, 
-    semi-supervised, non-parametric survival curve estimator optimized for efficient use of 
-    Electronic Health Record (EHR) data with a limited number of current status labels.
+Description: A consistent, semi-supervised, non-parametric survival curve estimator optimized for efficient use of Electronic Health Record (EHR) data with a limited number of current status labels. See van der Laan and Robins (1997) <doi:10.2307/2670119>.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
@@ -19,6 +16,16 @@ Imports:
     survival,
     pracma,
     foreach,
-    doParallel
+    doParallel,
+    parallel,
+    Rcpp
+LinkingTo: 
+    Rcpp, 
+    RcppArmadillo
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+LazyData: true
 URL: https://github.com/celehs/SCORNET
 BugReports: https://github.com/celehs/SCORNET/issues

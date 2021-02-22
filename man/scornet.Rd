@@ -17,7 +17,8 @@ scornet(
   Zehr.UL = NULL,
   K = Knorm,
   b = NULL,
-  ghat = NULL
+  h_hat = NULL,
+  nCores = 1
 )
 }
 \arguments{
@@ -45,7 +46,9 @@ scornet(
 
 \item{b}{bandwidth (default set heuristically)}
 
-\item{ghat}{N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)}
+\item{h_hat}{N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)}
+
+\item{nCores}{Number of cores to use for parallelization (defaults to 1)}
 }
 \value{
 S_hat: Survival function estimates at times t0.all; StdErrs: Asymptotically consistent standard error estimates corresponding to S_hat
