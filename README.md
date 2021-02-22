@@ -1,13 +1,5 @@
-SCORNET
-================
 
-<!-- badges: start -->
-
-[![R build
-status](https://github.com/celehs/SCORNET/workflows/R-CMD-check/badge.svg)](https://github.com/celehs/SCORNET/actions)
-<!-- badges: end -->
-
-![Schematic of the SCORNET algorithm.](README_files/scornet_flowchart.png)
+# SCORNET: Semi-Supervised Calibration of Risk with Noisy Event Times
 
 ## Overview
 
@@ -24,15 +16,19 @@ unlabeled patients in a semi-supervised fashion, and (2) leveraging
 information-dense engineered EHR features to maximize imputation
 precision in the unlabeled set.
 
+![Schematic of the SCORNET
+algorithm.](README_files/scornet_flowchart.png)
+
 See Ahuja et al. (2020) for details.
 
-Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated example.
+Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated
+example.
 
 ## References
 
-  - Ahuja Y, Liang L, Huang S, Cai T (2020). Semi-supervised Calibration
-    of Risk with Noisy Event Times (SCORNET) Using Electronic Health
-    Record Data. BioArxiv.
+  - Ahuja Y, Liang L, Huang S, Liao K, Cai T (2020). Semi-supervised
+    Calibration of Risk with Noisy Event Times (SCORNET) Using
+    Electronic Health Record Data. BioArxiv.
 
   - Mark J. van der Laan & James M. Robins (1998) Locally Efficient
     Estimation with Current Status Data and Time-Dependent Covariates,

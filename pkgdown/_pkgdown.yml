@@ -1,6 +1,6 @@
 template:
   params:
-    bootswatch: spacelab
+    bootswatch: cosmo
 
 navbar:
   title: "SCORNET"
