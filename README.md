@@ -17,7 +17,7 @@ information-dense engineered EHR features to maximize imputation
 precision in the unlabeled set.
 
 ![Schematic of the SCORNET
-algorithm.](README_files/scornet_flowchart.png)
+algorithm.](https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true)
 
 See Ahuja et al. (2020) for details.
 
