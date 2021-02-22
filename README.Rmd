@@ -11,6 +11,8 @@ The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a co
 ![Schematic of the SCORNET algorithm.](https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true)
 
 See Ahuja et al. (2020) for details.
+
+
 ## References
 
 - Ahuja Y, Liang L, Huang S, Liao K, Cai T (2020). Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) Using Electronic Health Record Data. BioArxiv.

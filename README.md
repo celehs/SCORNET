@@ -21,9 +21,6 @@ algorithm.](https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.
 
 See Ahuja et al. (2020) for details.
 
-Click [HERE](https://celehs.github.io/SCORNET/) to view a simulated
-example.
-
 ## References
 
   - Ahuja Y, Liang L, Huang S, Liao K, Cai T (2020). Semi-supervised
