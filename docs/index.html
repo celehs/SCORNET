@@ -69,12 +69,24 @@
 <div id="scornet-semi-supervised-calibration-of-risk-with-noisy-event-times" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#scornet-semi-supervised-calibration-of-risk-with-noisy-event-times" class="anchor"></a>SCORNET: Semi-Supervised Calibration of Risk with Noisy Event Times</h1></div>
+
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a consistent, semi-supervised, non-parametric survival curve estimator optimized for efficient use of Electronic Health Record (EHR) data with a limited number of current status labels. Derived from van der Laan and Robins’ Inverse Probability of Censoring Weighted (IPCW) estimator, it achieves locally efficient survival curve estimation using current status labels – binary indicators of phenotype status at censoring time – rather than more expensive event time labels. SCORNET boosts efficiency over IPCW in the typical EHR setting by (1) utilizing unlabeled patients in a semi-supervised fashion, and (2) leveraging information-dense engineered EHR features to maximize imputation precision in the unlabeled set.</p>
 <p><img src="https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true" alt="Schematic of the SCORNET algorithm."></p>
 <p>See Ahuja et al. (2020) for details.</p>
+</div>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>Install stable version from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"SCORNET"</span><span class="op">)</span></pre></div>
+<p>Install stable version from CRAN:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"celehs/SCORNET"</span><span class="op">)</span></pre></div>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -113,7 +125,13 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=SCORNET"><img src="https://www.r-pkg.org/badges/version/SCORNET" alt="CRAN"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

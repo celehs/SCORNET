@@ -1,6 +1,8 @@
 
 # SCORNET: Semi-Supervised Calibration of Risk with Noisy Event Times
 
+[![CRAN](https://www.r-pkg.org/badges/version/SCORNET)](https://CRAN.R-project.org/package=SCORNET)
+
 ## Overview
 
 The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET)
@@ -20,6 +22,21 @@ precision in the unlabeled set.
 algorithm.](https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true)
 
 See Ahuja et al. (2020) for details.
+
+## Installation
+
+Install stable version from CRAN:
+
+``` r
+install.packages("SCORNET")
+```
+
+Install development version from GitHub:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("celehs/SCORNET")
+```
 
 ## References
 
