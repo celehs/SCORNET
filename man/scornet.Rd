@@ -17,7 +17,8 @@ scornet(
   Zehr.UL = NULL,
   K = Knorm,
   b = NULL,
-  h_hat = NULL,
+  bexp = -1/4,
+  fc = NULL,
   nCores = 1
 )
 }
@@ -44,9 +45,11 @@ scornet(
 
 \item{K}{Kernel function (defaults to standard normal)}
 
-\item{b}{bandwidth (default set heuristically)}
+\item{b}{bandwidth (optional)}
 
-\item{h_hat}{N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)}
+\item{bexp}{bandwidth exponent (must be between -1/5 and -1/3, defaults to -1/4)}
+
+\item{fc}{N^1/4-consistent pdf estimator of C|Z0 (defaults to Kernel-Smoothed Cox/Breslow estimator)}
 
 \item{nCores}{Number of cores to use for parallelization (defaults to 1)}
 }

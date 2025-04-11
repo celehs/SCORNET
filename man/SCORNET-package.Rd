@@ -2,6 +2,7 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{SCORNET-package}
+\alias{SCORNET}
 \alias{SCORNET-package}
 \title{SCORNET: A novel non-parametric survival curve estimator for the Electronic Health Record}
 \description{
@@ -10,5 +11,22 @@ survival curve estimator that boosts efficiency over existing non-parametric est
 by (1) utilizing unlabeled patients in a semi-supervised fashion, and (2) leveraging
 information-dense engineered EHR features to maximize unlabeled set imputation precision
 See Ahuja et al. (2020) BioArxiv for details
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://celehs.github.io/SCORNET}
+  \item Report bugs at \url{https://github.com/celehs/SCORNET/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Yuri Ahuja \email{Yuri_Ahuja@hms.harvard.edu}
+
+Authors:
+\itemize{
+  \item PARSE Health
+}
+
 }
 \keyword{package}
