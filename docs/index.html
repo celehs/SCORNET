@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Semi-Supervised Calibration of Risk with Noisy Event Times • SCORNET</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+
+
     <div class="container template-home">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">SCORNET</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -39,8 +41,8 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa-home"></span>
-     
+    <span class="fa fa-home"></span>
+
   </a>
 </li>
 <li>
@@ -52,7 +54,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://celehs.github.io">CELEHS Software</a>
+  <a href="https://celehs.github.io" class="external-link">CELEHS Software</a>
 </li>
       </ul>
 </div>
@@ -62,35 +64,37 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="scornet-semi-supervised-calibration-of-risk-with-noisy-event-times" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#scornet-semi-supervised-calibration-of-risk-with-noisy-event-times" class="anchor"></a>SCORNET: Semi-Supervised Calibration of Risk with Noisy Event Times</h1></div>
-
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level1">
+<div class="page-header"><h1 id="scornet-semi-supervised-calibration-of-risk-with-noisy-event-times">SCORNET: Semi-Supervised Calibration of Risk with Noisy Event Times<a class="anchor" aria-label="anchor" href="#scornet-semi-supervised-calibration-of-risk-with-noisy-event-times"></a>
+</h1></div>
+<p><a href="https://CRAN.R-project.org/package=SCORNET" class="external-link"><img src="https://www.r-pkg.org/badges/version/SCORNET" alt="CRAN"></a></p>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>The Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) is a consistent, semi-supervised, non-parametric survival curve estimator optimized for efficient use of Electronic Health Record (EHR) data with a limited number of current status labels. Derived from van der Laan and Robins’ Inverse Probability of Censoring Weighted (IPCW) estimator, it achieves locally efficient survival curve estimation using current status labels – binary indicators of phenotype status at censoring time – rather than more expensive event time labels. SCORNET boosts efficiency over IPCW in the typical EHR setting by (1) utilizing unlabeled patients in a semi-supervised fashion, and (2) leveraging information-dense engineered EHR features to maximize imputation precision in the unlabeled set.</p>
-<p><img src="https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true" alt="Schematic of the SCORNET algorithm."></p>
-<p>See Ahuja et al. (2020) for details.</p>
+<div class="float">
+<img src="https://github.com/celehs/SCORNET/blob/master/img/scornet_flowchart.png?raw=true" alt="Schematic of the SCORNET algorithm."><div class="figcaption">Schematic of the SCORNET algorithm.</div>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install stable version from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"SCORNET"</span><span class="op">)</span></pre></div>
-<p>Install stable version from CRAN:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"celehs/SCORNET"</span><span class="op">)</span></pre></div>
+<p>See Ahuja et al. (2020) for details.</p>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Install stable version from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"SCORNET"</span><span class="op">)</span></span></code></pre></div>
+<p>Install development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"celehs/SCORNET"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
 <li><p>Ahuja Y, Liang L, Huang S, Liao K, Cai T (2020). Semi-supervised Calibration of Risk with Noisy Event Times (SCORNET) Using Electronic Health Record Data. BioArxiv.</p></li>
 <li><p>Mark J. van der Laan &amp; James M. Robins (1998) Locally Efficient Estimation with Current Status Data and Time-Dependent Covariates, Journal of the American Statistical Association, 93:442, 693-701, DOI: 10.1080/01621459.1998.10473721</p></li>
@@ -101,52 +105,60 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=SCORNET">https://​cloud.r-project.org/​package=SCORNET</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/celehs/SCORNET/">https://​github.com/​celehs/​SCORNET/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/celehs/SCORNET/issues">https://​github.com/​celehs/​SCORNET/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Yuri Ahuja <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="https://cloud.r-project.org/package=SCORNET" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/celehs/SCORNET/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/celehs/SCORNET/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=SCORNET"><img src="https://www.r-pkg.org/badges/version/SCORNET" alt="CRAN"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing SCORNET</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Yuri Ahuja <br><small class="roles"> Author, maintainer </small>  </li>
+<li>PARSE Health <br><small class="roles"> Author </small>  </li>
+</ul>
+</div>
+
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Yuri Ahuja.</p>
+  <p></p>
+<p>Developed by Yuri Ahuja, PARSE Health.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
+
+
+
 
 
   </body>
